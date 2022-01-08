@@ -34,7 +34,7 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user), UserView {
     }
 
     override fun showUser(user: GitHubUser) {
-        viewBinding.userLogin.text = user.login
+        viewBinding.userLogin.text = user.html_url
     }
 
     companion object {
