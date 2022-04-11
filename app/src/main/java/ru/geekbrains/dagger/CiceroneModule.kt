@@ -5,14 +5,15 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import dagger.Module
 import dagger.Provides
+import ru.geekbrains.navigation.CustomRouter
 import javax.inject.Singleton
 
 @Module
 class CiceroneModule {
-    var cicerone: Cicerone<Router> = Cicerone.create()
+    var cicerone: Cicerone<CustomRouter> = Cicerone.create(CustomRouter())
 
     @Provides
-    fun cicerone(): Cicerone<Router> = cicerone
+    fun cicerone(): Cicerone<CustomRouter> = cicerone
 
     @Singleton
     @Provides

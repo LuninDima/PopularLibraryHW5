@@ -9,8 +9,7 @@ import ru.geekbrains.navigation.CustomRouter
 import javax.inject.Inject
 
 class UserPresenter(
-    private val userLogin: String,
-) : MvpPresenter<UserView>() {
+    private val userLogin: String): MvpPresenter<UserView>() {
 
     @Inject
     lateinit var userRepository: GitHubUserRepository
@@ -18,9 +17,6 @@ class UserPresenter(
     lateinit var router: Router
 
     override fun onFirstViewAttach() {
-      /*  userRepository
-            .getUserByLogin(userLogin)
-            ?.let(viewState::showUser)*/
 
         userRepository.getUserByLogin(userLogin)
             .subscribeOn(Schedulers.io())
