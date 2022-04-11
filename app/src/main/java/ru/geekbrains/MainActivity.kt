@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
-//import ru.geekbrains.App.Navigation.navigatorHolder
-//import ru.geekbrains.App.Navigation.router
 import ru.geekbrains.mvpusers.UsersScreen
 import ru.geekbrains.navigation.CustomNavigator
 import javax.inject.Inject
