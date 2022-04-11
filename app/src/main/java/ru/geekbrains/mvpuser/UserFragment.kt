@@ -5,7 +5,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import ru.geekbrains.App.Navigation.router
+import ru.geekbrains.App
+//import ru.geekbrains.App.Navigation.router
 import ru.geekbrains.R
 import ru.geekbrains.data.GitHubUser
 import ru.geekbrains.data.GitHubUserRepositoryFactory
@@ -22,9 +23,9 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user), UserView {
     private val presenter: UserPresenter by moxyPresenter {
         UserPresenter(
             userLogin = userLogin,
-            userRepository = GitHubUserRepositoryFactory.create(),
-            router = router
-        )
+        ).apply {
+            App.instance.component.inject(this)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -11,6 +11,7 @@ import ru.geekbrains.data.GitHubUser
 interface GitHubUserDao {
     @Query("SELECT * FROM GithubUserTable")
     fun getUsers(): Single<List<GitHubUser>>
+
     @Query("SELECT * FROM GitHubUserTable WHERE login LIKE :login Limit 1")
     fun getUserByLogin(login: String): Single<GitHubUser>
 
