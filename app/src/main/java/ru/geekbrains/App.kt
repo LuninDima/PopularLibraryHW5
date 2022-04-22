@@ -9,9 +9,9 @@ import ru.geekbrains.dagger.ApplicationComponent
 import ru.geekbrains.dagger.DaggerApplicationComponent
 import ru.geekbrains.navigation.CustomRouter
 
-class App: Application() {
+class App : Application() {
 
-lateinit var component: ApplicationComponent
+    lateinit var component: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -20,7 +20,8 @@ lateinit var component: ApplicationComponent
             .setContext(this)
             .build()
     }
-    companion object Шт{
+
+    companion object {
         lateinit var instance: App
     }
 }

@@ -1,9 +1,10 @@
-package ru.geekbrains.data
+package ru.geekbrains.data.room.GitHubUser
 
 import io.reactivex.rxjava3.core.Single
 import ru.geekbrains.data.retrofit.GitHubApi
 import ru.geekbrains.data.room.DBStorage
-import ru.geekbrains.data.room.RoomFactory
+import ru.geekbrains.data.room.GitHubUser.GitHubUser
+import ru.geekbrains.data.room.GitHubUser.GitHubUserRepository
 import javax.inject.Inject
 
 class GitHubUserRepositoryImpl
@@ -11,6 +12,8 @@ class GitHubUserRepositoryImpl
             private val gitHubApi: GitHubApi,
     private val roomDb: DBStorage
     ) : GitHubUserRepository {
+
+
     override fun getUsers(): Single<List<GitHubUser>> {
         return roomDb.getGitHubUserDao().getUsers()
             .flatMap {
@@ -26,8 +29,10 @@ class GitHubUserRepositoryImpl
             }
     }
 
+
     override fun getUserByLogin(userId: String): Single<GitHubUser> {
         return roomDb.getGitHubUserDao().getUserByLogin(userId)
-      //  return gitHubApi.fetchUserByLogin(userId)
     }
+
+
 }

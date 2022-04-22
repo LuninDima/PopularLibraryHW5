@@ -5,6 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import ru.geekbrains.MainActivity
 import ru.geekbrains.mvpuser.UserPresenter
+import ru.geekbrains.mvpuser.di.UserReposComponent
 import ru.geekbrains.mvpusers.UsersPresenter
 import javax.inject.Singleton
 
@@ -21,6 +22,8 @@ import javax.inject.Singleton
 )
 interface ApplicationComponent {
 
+    fun providerUserRepoComponent(): UserReposComponent.Builder
+
     @Component.Builder
     interface Builder{
         @BindsInstance
@@ -32,5 +35,4 @@ interface ApplicationComponent {
 
     fun inject(activity: MainActivity)
     fun inject(activity: UsersPresenter)
-    fun inject(activity: UserPresenter)
 }

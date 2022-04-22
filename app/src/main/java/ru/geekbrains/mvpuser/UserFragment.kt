@@ -8,14 +8,17 @@ import moxy.ktx.moxyPresenter
 import ru.geekbrains.App
 //import ru.geekbrains.App.Navigation.router
 import ru.geekbrains.R
-import ru.geekbrains.data.GitHubUser
-import ru.geekbrains.data.GitHubUserRepositoryFactory
-import ru.geekbrains.databinding.ViewUserBinding
-import javax.inject.Inject
 
-class UserFragment: MvpAppCompatFragment(R.layout.view_user), UserView {
+import ru.geekbrains.data.room.GitHubUserRepos.GitHubUserRepos
 
-    private lateinit var viewBinding: ViewUserBinding
+import ru.geekbrains.databinding.ViewUserReposBinding
+import ru.geekbrains.recycler.repos.ReposAdapter
+
+
+class UserFragment : MvpAppCompatFragment(R.layout.view_user_repos), UserView,
+    ReposAdapter.OnReposClickListener {
+
+    private lateinit var viewBinding: ViewUserReposBinding
 
     private val userLogin: String by lazy {
         arguments?.getString(ARG_USER_LOGIN).orEmpty()
@@ -24,18 +27,21 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user), UserView {
         UserPresenter(
             userLogin = userLogin,
         ).apply {
-            App.instance.component.inject(this)
+            App.instance.component.providerUserRepoComponent().build().inject(this)
         }
     }
+    private val reposAdapter = ReposAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding = ViewUserBinding.bind(view)
-        viewBinding.userLogin.text = userLogin
+        viewBinding = ViewUserReposBinding.bind(view)
+        viewBinding.reposRecycler.adapter = reposAdapter
+
     }
 
-    override fun showUser(user: GitHubUser) {
-        viewBinding.userLogin.text = user.html_url
+
+    override fun showUserRepos(repos: List<GitHubUserRepos>) {
+        reposAdapter.submitList(repos)
     }
 
     companion object {
@@ -48,4 +54,10 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user), UserView {
                 }
             }
     }
+
+    override fun onReposPicked(repos: GitHubUserRepos) {
+        TODO("Not yet implemented")
+    }
+
+
 }

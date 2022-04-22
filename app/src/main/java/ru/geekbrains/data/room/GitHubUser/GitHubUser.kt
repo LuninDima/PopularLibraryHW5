@@ -1,4 +1,4 @@
-package ru.geekbrains.data
+package ru.geekbrains.data.room.GitHubUser
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

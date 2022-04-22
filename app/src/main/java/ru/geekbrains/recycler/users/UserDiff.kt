@@ -1,7 +1,7 @@
-package ru.geekbrains.recycler
+package ru.geekbrains.recycler.users
 
 import androidx.recyclerview.widget.DiffUtil
-import ru.geekbrains.data.GitHubUser
+import ru.geekbrains.data.room.GitHubUser.GitHubUser
 
 class UserDiff : DiffUtil.ItemCallback<GitHubUser>() {
 

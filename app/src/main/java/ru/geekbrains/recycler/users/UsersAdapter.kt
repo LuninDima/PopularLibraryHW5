@@ -1,12 +1,14 @@
-package ru.geekbrains.recycler
+package ru.geekbrains.recycler.users
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import ru.geekbrains.data.GitHubUser
+import ru.geekbrains.data.room.GitHubUser.GitHubUser
 import ru.geekbrains.databinding.ViewUserBinding
 
-class UsersAdapter(private val onUserClickListener: OnUserClickListener?): ListAdapter<GitHubUser, UserViewHolder>(UserDiff()) {
+class UsersAdapter(private val onUserClickListener: OnUserClickListener?): ListAdapter<GitHubUser, UserViewHolder>(
+    UserDiff()
+) {
 
     interface OnUserClickListener {
         fun onUserPicked(user: GitHubUser)

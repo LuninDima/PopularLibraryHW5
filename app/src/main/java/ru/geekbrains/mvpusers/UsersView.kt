@@ -2,7 +2,7 @@ package ru.geekbrains.mvpusers
 
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.SingleState
-import ru.geekbrains.data.GitHubUser
+import ru.geekbrains.data.room.GitHubUser.GitHubUser
 
 interface UsersView : MvpView {
 

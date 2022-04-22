@@ -1,11 +1,10 @@
-package ru.geekbrains.data.room
+package ru.geekbrains.data.room.GitHubUser
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import io.reactivex.rxjava3.core.Single
-import ru.geekbrains.data.GitHubUser
 
 @Dao
 interface GitHubUserDao {
