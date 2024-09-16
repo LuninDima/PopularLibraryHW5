@@ -1,17 +1,26 @@
 package ru.geekbrains
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import com.github.terrakok.cicerone.Cicerone
+import dagger.android.DaggerApplication
+import ru.geekbrains.dagger.ApplicationComponent
+import ru.geekbrains.dagger.DaggerApplicationComponent
 import ru.geekbrains.navigation.CustomRouter
 
 class App: Application() {
 
-    companion object Navigation {
+lateinit var component: ApplicationComponent
 
-        private val cicerone: Cicerone<CustomRouter> by lazy {
-            Cicerone.create(CustomRouter())
-        }
-        val navigatorHolder = cicerone.getNavigatorHolder()
-        val router = cicerone.router
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+        component = DaggerApplicationComponent.builder()
+            .setContext(this)
+            .build()
+    }
+    companion object Шт{
+        lateinit var instance: App
     }
 }
